@@ -86,8 +86,8 @@
               Стоимость:
               {{ event.price == "0" ? "бесплатно" : event.price + "руб." }}
             </p>
-            <p>
-              <a href="#" class="button is-danger">Забронировать</a>
+            <p v-if="event.booking_url.length">
+              <a :href="event.booking_url" class="button is-success">Забронировать</a>
             </p>
           </div>
         </div>
@@ -157,7 +157,8 @@ export default {
         'start_datetime',
         'end_datetime',
         'organizer_id.*',
-        'organizer_id.picture.*'
+        'organizer_id.picture.*',
+        'booking_url'
       ]
     })
     return { event: response.data }
