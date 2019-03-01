@@ -11,14 +11,13 @@
 </template>
 
 <script>
-import uniqBy from 'lodash.uniqby'
-
 export default {
   data() {
     return {
-      test: 0
+      test: []
     }
   },
+
   computed: {
     changedCityId() {
       return this.$store.getters.cityChangedId
@@ -27,10 +26,7 @@ export default {
       return this.$store.getters['events/list']
     },
     cities() {
-      const arr = this.events.map(function(el) {
-        return { id: el.city_id.id, title: el.city_id.title }
-      })
-      return uniqBy(arr, 'id')
+      return this.$store.getters.getCities
     }
   },
   methods: {
