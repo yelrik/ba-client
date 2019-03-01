@@ -108,7 +108,7 @@ export default {
               e.spec_id.id === this.filterSpecType) &&
             e.city_id.id === this.filterCity &&
             (this.filterMonth === 'all' ||
-              new Date(e.start_datetime).getMonth() === +this.filterMonth)
+              new Date(e.start_datetime).getMonth() === this.filterMonth)
           )
         }),
         2

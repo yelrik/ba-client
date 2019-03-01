@@ -14,7 +14,7 @@ export const mutations = {
     state.list = []
   },
   changeEventType(state, event) {
-    state.filterEventType = event.target.value
+    state.filterEventType = +event.target.value
   },
   changeSpecType(state, event) {
     state.filterSpecType = +event.target.value
