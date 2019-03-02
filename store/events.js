@@ -20,7 +20,7 @@ export const mutations = {
     state.filterSpecType = +event.target.value
   },
   changeMonthFilter(state, event) {
-    state.filterMonth = event
+    state.filterMonth = +event
   },
   setMonthNull(state) {
     state.filterMonth = null
@@ -32,7 +32,7 @@ export const getters = {
     return state.list
   },
   filterMonth: state => {
-    return String(state.filterMonth)
+    return state.filterMonth
   },
   filterEventType: state => {
     return state.filterEventType

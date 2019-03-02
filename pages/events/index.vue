@@ -100,14 +100,12 @@ export default {
       return chunk(
         this.events.filter(e => {
           return (
-            !!(
-              this.filterEventType === 0 ||
-              e.event_type_id.id === this.filterEventType
-            ) &&
+            (this.filterEventType === 0 ||
+              e.event_type_id.id === this.filterEventType) &&
             (this.filterSpecType === 0 ||
               e.spec_id.id === this.filterSpecType) &&
             e.city_id.id === this.filterCity &&
-            (this.filterMonth === 'all' ||
+            (this.filterMonth === 0 ||
               new Date(e.start_datetime).getMonth() === this.filterMonth)
           )
         }),

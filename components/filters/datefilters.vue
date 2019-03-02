@@ -1,7 +1,7 @@
 <template>
   <div class="select is-small is-rounded">
     <select :value="value" @change="onChange">
-      <option value="all">
+      <option value="0">
         Все
       </option>
       <option
