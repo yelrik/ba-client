@@ -3,7 +3,7 @@ export const state = () => ({
   list: [],
   filterEventType: 0,
   filterSpecType: 0,
-  filterMonth: 'all'
+  filterMonth: 0
 })
 
 export const mutations = {
