@@ -39,9 +39,7 @@
           <div class="content">
             <div class="column">
               <h6>
-                <span class="icon">
-                  <img src="  ionicons/svg/md-pin.svg">
-                </span>{{ vacancy.city_id.title }}, {{ vacancy.adress }}
+                {{ vacancy.city_id.title }}, {{ vacancy.adress }}
               </h6>
             </div>
           </div>
