@@ -28,13 +28,6 @@
             <p><span class="has-text-grey has-text-weight-bold">График работы: </span>{{ vacancy.employment_type_id.title }}</p>
           </div>
         </div>
-        <!-- <div class="columns">
-          <div class="column">
-            <div class="content" v-html="vacancy.description">
-              {{ vacancy.description }}
-            </div>
-          </div>
-        </div> -->
         <div class="columns .is-variable">
           <div class="content">
             <div class="column">
