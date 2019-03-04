@@ -30,7 +30,7 @@
               <span>{{ event.place.title }}, {{ event.place.address }}</span>
             </p>
           </div>
-          <div class="card-content">
+          <div class="card-content" v-html="event.description">
             {{ event.description || "Описание скоро появится" }}
           </div>
         </div>
