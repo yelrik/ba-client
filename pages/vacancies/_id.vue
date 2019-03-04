@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="columns">
-      <div class="column">
+      <div class="column is-offset-1">
         <div class="columns">
           <div class="column">
             <div class="content">
@@ -12,7 +12,7 @@
         <div class="columns">
           <div class="column">
             <div class="content">
-              <h3>{{ vacancy.salary }} руб.</h3>
+              <h3>{{ vacancy.salary ? vacancy.salary + ' руб.' : 'зарплата договорная' }}</h3>
             </div>
           </div>
         </div>
@@ -31,7 +31,7 @@
           </div>
         </div>
       </div>
-      <div class="column">
+      <div class="column is-offset-1">
         <div class="columns">
           <div class="column">
             <div class="content">
