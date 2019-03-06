@@ -51,6 +51,11 @@
         </div>
         <div class="columns">
           <div class="column">
+            <span class="has-text-grey-light">Вакансия опубликована {{ new Date(vacancy.created_on).toLocaleDateString() }}</span>
+          </div>
+        </div>
+        <div class="columns">
+          <div class="column">
             <a href="#contacts" class="button is-info" @click="isActive = true">Узнать контакты</a>
           </div>
         </div>

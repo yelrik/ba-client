@@ -52,7 +52,10 @@
                   <a class="button is-info">Подробнее</a>
                 </router-link>
               </div>
-            </div>            
+              <div class="column">
+                <span class="has-text-grey-light">{{ new Date(vacancy.created_on).toLocaleDateString() }}</span>
+              </div>
+            </div>
           </div>
         </div>  
       </div>
@@ -65,6 +68,14 @@
   </div>
 </template>
 
+<style>
+.columns,
+.column,
+body {
+  margin: 0;
+  padding: 0;
+}
+</style>
 
 <script>
 import DirectusSDK from '@directus/sdk-js'
@@ -93,11 +104,17 @@ export default {
             this.filterVacancyType === 0)
         )
       })
-      this.$store.commit('vacancies/setFilteredVacancies', filteredVacancies)
       return filteredVacancies
     },
+    sortFilteredVacancies() {
+      const arr = this.filteredVacancies
+      arr.sort(function(a, b) {
+        return new Date(b.created_on) - new Date(a.created_on)
+      })
+      return arr
+    },
     chunkVacancies() {
-      return chunk(this.filteredVacancies, 2)
+      return chunk(this.sortFilteredVacancies, 2)
     }
   },
   async fetch({ store, params }) {
