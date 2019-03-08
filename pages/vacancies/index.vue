@@ -68,15 +68,6 @@
   </div>
 </template>
 
-<style>
-.columns,
-.column,
-body {
-  margin: 0;
-  padding: 0;
-}
-</style>
-
 <script>
 import DirectusSDK from '@directus/sdk-js'
 import chunk from 'lodash.chunk'

@@ -1,5 +1,5 @@
 <template>
-  <div class="select is-rounded is-small">
+  <div class="select is-small">
     <select :value="changedCityId" @change="onChange">
       <option v-for="city in cities" :key="city.id" :value="city.id">
         {{
