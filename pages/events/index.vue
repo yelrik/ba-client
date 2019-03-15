@@ -38,13 +38,13 @@
               <span class="icon">
                 <img src="https://ionicons.com/ionicons/svg/md-time.svg">
               </span>
-              {{ formateDate(event.start_datetime).time }}
+              {{ event.start_datetime | getTime }}
             </p>
             <p class="card-footer-item">
               <span class="icon">
                 <img src="https://ionicons.com/ionicons/svg/md-calendar.svg">
               </span>
-              {{ formateDate(event.start_datetime).date }}
+              {{ event.start_datetime | getDate }}
             </p>
             <router-link :to="{ name: 'events-id', params: { id: event.id } }">
               <p class="card-footer-item" style="justify-content: flex-end">
@@ -162,18 +162,6 @@ export default {
           : (result = false)
       }
       return result
-    },
-    formateDate(strDatetime) {
-      const arrDatetime = strDatetime.split(' ')
-      const arrDate = arrDatetime[0].split('-')
-      const arrTime = arrDatetime[1].split(':')
-      const newArr = arrDate.concat(arrTime)
-      const formated = {}
-      const rawDate = new Date(...newArr)
-      formated.raw = rawDate
-      formated.date = arrDate[2] + '.' + arrDate[1] + '.' + arrDate[0]
-      formated.time = arrTime[0] + ':' + arrTime[1]
-      return formated
     }
   }
 }

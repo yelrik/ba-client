@@ -12,7 +12,7 @@
         <div class="columns">
           <div class="column">
             <p class="title is-4">
-              {{ event.start_datetime }}
+              {{ event.start_datetime | getDateAndTime }}
             </p>
           </div>
         </div>
