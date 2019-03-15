@@ -1,8 +1,8 @@
 <template>
-  <section class="container">
-    <div class="columns">
+  <div class="container">
+    <div class="columns list_filters">
       <div class="column">
-        Тип:
+        <span> Тип:</span>
         <EventsType />
       </div>
       <div class="column">
@@ -10,7 +10,7 @@
         <SpecsType />
       </div>
     </div>
-    <div class="columns">
+    <div class="columns list_filters">
       <div class="column">
         Месяц проведения: <DateFilters />
       </div>
@@ -60,8 +60,15 @@
         Мероприятий с данными настройками фильтров нет
       </div>
     </div>
-  </section>
+  </div>
 </template>
+
+<style>
+.list_filters > .column {
+  margin-left: 10px;
+}
+</style>
+
 
 <script>
 import chunk from 'lodash.chunk'

@@ -1,43 +1,93 @@
 <template>
-  <section class="section hero">
-    <div class="hero-body">
-      <div v-for="event in last3Events" :key="event.id" class="container">
-        <div class="columns">
-          <div class="column">
-            <p class="title is-2 has-text-centered">
-              {{ event.title }}
-            </p>
-          </div>
+  <div class="container">
+    <section class="section">
+      <div class="columns">
+        <div class="column">
+          <p class="title is-4 is-uppercase has-text-grey-light">
+            Ближайшие события
+          </p>
+          <hr> 
         </div>
-        <div class="columns">
-          <div class="column">
-            <p class="title is-4">
-              {{ event.start_datetime | getDateAndTime }}
-            </p>
+      </div>
+      <div v-if="last5Events.length" class="content">
+        <div v-for="event in last5Events" :key="event.id" class="columns is-vcentered">
+          <div class="column is-2 is-size-4">
+            <span class="has-text-weight-bold">{{ event.start_datetime | getDate }} </span>
           </div>
-        </div>
-        <div class="columns">
-          <div class="column">
-            <img :src="event.image.data.full_url" alt="">
+          <div class="column is-2">
+            <span class="tag is-info">{{ event.price ? event.price + ' руб.' : 'бесплатно' }}</span>
           </div>
-        </div>
-        <div class="columns">
-          <div class="column">
-            <p class="title is-5">
-              {{ event.place.adress }}
-            </p>
+          <div class="column is-4">
+            <span class="has-text-weight-semibold">"{{ event.title }}"</span>
+          </div>
+          <div class="column is-3">
+            <span>{{ event.place.address }}</span>
+          </div>
+          <div class="column is-1">
+            <router-link :to="{ name: 'events-id', params: { id: event.id } }">
+              <span class="button is-small is-primary">Подробнее</span>
+            </router-link>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+      <div v-else class="columns">
+        <div class="columns">
+          Событий нет
+        </div>
+      </div>
+    </section>
+    <section class="section">
+      <div class="columns">
+        <div class="column">
+          <p class="title is-4 is-uppercase has-text-grey-light">
+            Новые вакансии
+          </p>
+          <hr> 
+        </div>
+      </div>
+      <div v-if="last5Vacancies.length" class="content">
+        <div v-for="vacancy in last5Vacancies" :key="vacancy.id" class="columns is-vcentered">
+          <div class="column is-2">
+            <span class="has-text-weight-bold is-size-4">{{ vacancy.created_on | getDate }} </span>
+          </div>
+          <div class="column is-2">
+            <span class="tag is-info">{{ vacancy.salary ? vacancy.salary + ' руб.' : 'зп на собеседовании' }}</span>
+          </div>
+          <div class="column is-4">
+            <span class="has-text-weight-semibold">{{ vacancy.title }}</span>
+          </div>
+          <div class="column is-3">
+            <span>{{ vacancy.adress }}</span>
+          </div>
+          <div class="column is-1">
+            <router-link :to="{ name: 'vacancies-id', params: { id: vacancy.id } }">
+              <span class="button is-small is-primary">Подробнее</span>
+            </router-link>
+          </div>
+        </div>
+      </div>
+      <div v-else class="columns">
+        <div class="column">
+          <p>Вакансий пока нет</p>
+        </div>
+      </div>
+    </section>
+  </div>
 </template>
+
+<style>
+div.content > div.columns {
+  border-bottom: dotted 1px #636060;
+}
+</style>
+
 
 <script>
 export default {
   data() {
     return {
-      last3Events: []
+      last5Events: [],
+      last5Vacancies: []
     }
   },
   computed: {
@@ -51,17 +101,31 @@ export default {
     }
   },
   mounted: async function() {
-    const response = await this.$axios.$get(
-      'http://62.109.31.76/test.php?id=' + this.$store.getters.cityChangedId
+    const events = await this.$axios.$get(
+      'http://62.109.31.76/get_last_events.php?id=' +
+        this.$store.getters.cityChangedId
     )
-    this.last3Events = response
+    const vacancies = await this.$axios.$get(
+      'http://62.109.31.76/_/items/vacancies?filter[city_id][eq]=' +
+        this.$store.getters.cityChangedId +
+        '&sort=-created_on&limit=5'
+    )
+    this.last5Vacancies = vacancies.data
+    this.last5Events = events
   },
   methods: {
     async getList() {
-      const response = await this.$axios.$get(
-        'http://62.109.31.76/test.php?id=' + this.cityId
+      const events = await this.$axios.$get(
+        'http://62.109.31.76/get_last_events.php?id=' +
+          this.$store.getters.cityChangedId
       )
-      this.last3Events = response
+      const vacancies = await this.$axios.$get(
+        'http://62.109.31.76/_/items/vacancies?filter[city_id][eq]=' +
+          this.$store.getters.cityChangedId +
+          '&sort=-created_on&limit=5'
+      )
+      this.last5Vacancies = vacancies.data
+      this.last5Events = events
     }
   }
 }
