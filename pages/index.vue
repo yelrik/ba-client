@@ -9,7 +9,7 @@
           <hr> 
         </div>
       </div>
-      <div v-if="last5Events.length" class="content">
+      <div v-if="last5Events.length" class="content has-text-centered-mobile">
         <div v-for="event in last5Events" :key="event.id" class="columns is-vcentered">
           <div class="column is-2 is-size-4">
             <span class="has-text-weight-bold">{{ event.start_datetime | getDate }} </span>
@@ -45,7 +45,7 @@
           <hr> 
         </div>
       </div>
-      <div v-if="last5Vacancies.length" class="content">
+      <div v-if="last5Vacancies.length" class="content has-text-centered-mobile">
         <div v-for="vacancy in last5Vacancies" :key="vacancy.id" class="columns is-vcentered">
           <div class="column is-2">
             <span class="has-text-weight-bold is-size-4">{{ vacancy.created_on | getDate }} </span>
