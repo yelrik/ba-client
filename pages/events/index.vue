@@ -85,7 +85,9 @@ export default {
     DateFilters
   },
   data() {
-    return {}
+    return {
+      test: '2019-03-16'
+    }
   },
   computed: {
     filterCity() {
@@ -124,6 +126,19 @@ export default {
     }
   },
   async fetch({ store }) {
+    function getDateFilter() {
+      const now = new Date()
+      const year = String(now.getFullYear())
+      const month = String(now.getMonth() + 1)
+      const date = String(now.getDate())
+      const out =
+        year +
+        '-' +
+        (month.length === 1 ? '0' + month : month) +
+        '-' +
+        (date.length === 1 ? '0' + date : date)
+      return out
+    }
     store.commit('events/emptyList')
     const client = new DirectusSDK({
       url: 'http://62.109.31.76',
@@ -143,7 +158,13 @@ export default {
         'end_datetime',
         'event_type_id.*',
         'spec_id.*'
-      ]
+      ],
+      sort: 'start_datetime',
+      filter: {
+        start_datetime: {
+          gte: getDateFilter()
+        }
+      }
     })
     response.data.forEach(event => {
       store.commit('events/add', {
