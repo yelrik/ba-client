@@ -45,8 +45,9 @@ export default {
       return this.$store.getters['events/activeEventsMonth']
     },
     filteredMonthObject() {
+      const arr = this.activeMonth
       return this.monthObject.filter(function(e) {
-        return ['1', '2'].includes(e.value)
+        return arr.includes(e.value)
       })
     }
   },
