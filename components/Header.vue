@@ -3,10 +3,6 @@
     <div class="hero-head">
       <nav class="navbar is-size-4">
         <div class="navbar-brand">
-          <nuxt-link active-class="navbar-item" to="/">
-            <span style="color: red">BEAUTY</span>
-            <span style="color: blue">AFISHA</span>
-          </nuxt-link>
           <a
             :class="{ 'is-active': burgerIsActive }"
             role="button"
@@ -22,7 +18,7 @@
           </a>
         </div>
         <div :class="{ 'is-active': burgerIsActive }" class="navbar-menu">
-          <div class="navbar-start">
+          <div class="navbar-start has-text-centered content">
             <nuxt-link class="navbar-item" to="/">
               Главная
             </nuxt-link>
