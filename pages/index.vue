@@ -84,14 +84,27 @@ div.content > div.columns {
 
 <script>
 export default {
+  head() {
+    return {
+      title: 'Главные события для профессионалов бьюти сферы',
+      meta: [
+        {
+          name: 'description',
+          content:
+            'Мы собираем информацию о главных событиях бьюти индустрии в вашем городе. Мастер-классы для парикмахеров, мастеров маникюра, косметологов, а также для владельцев бьюти бизнеса'
+        }
+      ]
+    }
+  },
   data() {
     return {
       last5Events: [],
-      last5Vacancies: []
+      last5Vacancies: [],
+      cityTitle: ''
     }
   },
   computed: {
-    cityId: function() {
+    cityId() {
       return this.$store.getters.cityChangedId
     }
   },
@@ -110,8 +123,12 @@ export default {
         this.$store.getters.cityChangedId +
         '&sort=-created_on&limit=5'
     )
+    const cityTitle = await this.$axios.$get(
+      'http://62.109.31.76/_/items/cities/' + this.$store.getters.cityChangedId
+    )
     this.last5Vacancies = vacancies.data
     this.last5Events = events
+    this.cityTitle = cityTitle.data.title
   },
   methods: {
     async getList() {

@@ -112,6 +112,18 @@
 import DirectusSDK from '@directus/sdk-js'
 
 export default {
+  head() {
+    return {
+      title:
+        this.event.organizer_id.title +
+        ': ' +
+        this.event.title +
+        ' ' +
+        this.formatStartDateTime.date +
+        ' ' +
+        this.event.place.address
+    }
+  },
   data() {
     return {
       event: {}

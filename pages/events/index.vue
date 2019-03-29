@@ -79,15 +79,22 @@ import SpecsType from '~/components/filters/specsType.vue'
 import DateFilters from '~/components/filters/datefilters.vue'
 
 export default {
+  head() {
+    return {
+      title: 'Актуальные события в бьюти сфере',
+      meta: [
+        {
+          name: 'description',
+          content:
+            'Мастер-классы для парикмахеров, мастеров маникюра, косметологов, а также для владельцев бьюти бизнеса. Обучающие семинары от брендов и авторские методики'
+        }
+      ]
+    }
+  },
   components: {
     EventsType,
     SpecsType,
     DateFilters
-  },
-  data() {
-    return {
-      test: '2019-03-16'
-    }
   },
   computed: {
     filterCity() {

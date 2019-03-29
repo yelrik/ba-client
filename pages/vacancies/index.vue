@@ -74,11 +74,26 @@ import chunk from 'lodash.chunk'
 import SpecType from '~/components/filters/vacancySpec.vue'
 
 export default {
+  head() {
+    return {
+      title: 'Актуальные вакансии',
+      meta: [
+        {
+          name: 'description',
+          content:
+            'Вакансии парикмахера, мастера маникюра, косметолога' +
+            this.cityTitle
+        }
+      ]
+    }
+  },
   components: {
     SpecType
   },
   data() {
-    return {}
+    return {
+      cityTitle: 'Краснодар'
+    }
   },
   computed: {
     vacancies() {

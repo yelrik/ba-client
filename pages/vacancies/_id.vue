@@ -86,6 +86,16 @@
 import DirectusSDK from '@directus/sdk-js'
 
 export default {
+  head() {
+    return {
+      title:
+        'Вакансия: ' +
+        this.vacancy.title +
+        ' ' +
+        'в г. ' +
+        this.vacancy.city_id.title
+    }
+  },
   data() {
     return {
       vacancy: {},
