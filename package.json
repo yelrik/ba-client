@@ -1,7 +1,7 @@
 {
-  "name": "test",
-  "version": "1.0.0",
-  "description": "My astonishing Nuxt.js project",
+  "name": "beauty-afisha",
+  "version": "1.0.1",
+  "description": "Beauty event calendar",
   "author": "Alex",
   "private": true,
   "scripts": {
